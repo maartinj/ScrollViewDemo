@@ -46,13 +46,19 @@ struct Part1View: View {
                     ScrollView(.horizontal) {
                         HScrollContent(color: .blue, numItems: $numItems)
                     }
+                    .contentMargins(.bottom, 10, for: .scrollContent)
+                    .defaultScrollAnchor(.center)
                 }
                 Section("Scroll ClipView") {
                     Text("To clip or not clip the content in a scroll view")
                         .font(.caption)
                     ScrollView(.horizontal) {
-                        HScrollContent(color: .cyan, numItems: $numItems)
+                        HScrollContent(color: .cyan, numItems: $numItems, shadowRadius: 5)
                     }
+                    .scrollIndicators(.hidden)
+                    .contentMargins(5, for: .scrollContent)
+                    .scrollClipDisabled()
+                    .border(.red)
                 }
             }
             .navigationTitle("ScrollView")
