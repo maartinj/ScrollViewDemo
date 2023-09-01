@@ -27,6 +27,9 @@ struct Part2View: View {
                             }
                         }
                     }
+                    .contentMargins(.horizontal, 10, for: .scrollContent)
+                    .scrollIndicators(.hidden)
+                    .scrollTargetBehavior(.paging)
                     
                     Divider()
                     
@@ -37,10 +40,15 @@ struct Part2View: View {
                                 Image(asset.name)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 300, height: 225)
+//                                    .frame(width: 300, height: 225)
+                                    .containerRelativeFrame(.horizontal)
                             }
                         }
+                        .scrollTargetLayout()
                     }
+                    .contentMargins(.horizontal, 10, for: .scrollContent)
+                    .scrollIndicators(.hidden)
+                    .scrollTargetBehavior(.viewAligned)
                     // Button HStack
                     HStack {
                         Spacer()
