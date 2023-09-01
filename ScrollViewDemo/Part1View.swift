@@ -36,6 +36,9 @@ struct Part1View: View {
                     ScrollView(.horizontal) {
                         HScrollContent(color: .green, numItems: $numItems)
                     }
+                    .border(.green)
+                    .contentMargins(.horizontal, 10, for: .scrollContent)
+                    .contentMargins(.bottom, 10, for: .scrollContent)
                 }
                 Section("Default Scroll Anchor") {
                     Text("Specify the default scroll position when the scrollview loads")
