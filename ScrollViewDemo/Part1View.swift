@@ -21,7 +21,14 @@ struct Part1View: View {
                         .font(.caption)
                     ScrollView(.horizontal) {
                         HScrollContent(color: .red, numItems: $numItems)
+//                            .clipShape(RoundedRectangle(cornerRadius: 10))
+//                            .clipShape(.rect(cornerRadius: 10))
+                            .clipShape(.ellipse)
+                            .padding(.horizontal)
+                            .padding(.bottom)
                     }
+                    .scrollIndicatorsFlash(trigger: numItems)
+//                    .border(.red)
                 }
                 Section("Content Margins") {
                     Text("Add margin to the content of a scoll container")
