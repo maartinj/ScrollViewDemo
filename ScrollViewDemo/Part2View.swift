@@ -44,6 +44,11 @@ struct Part2View: View {
                                     .scaledToFit()
 //                                    .frame(width: 300, height: 225)
                                     .containerRelativeFrame(.horizontal)
+                                    .scrollTransition { content, phase in
+                                        content
+                                            .rotation3DEffect(.degrees(phase.value * -30), axis: (x: 0, y: 1, z: 0))
+                                            .opacity(phase.isIdentity ? 1.0 : 0.3)
+                                    }
                             }
                         }
                         .scrollTargetLayout()

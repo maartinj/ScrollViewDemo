@@ -20,9 +20,17 @@ struct Part3View: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 225)
+                            .scrollTransition { content, phase in
+                                content
+                                    .opacity(phase.isIdentity ? 1.0 : 0.3)
+                                    .scaleEffect(phase.isIdentity ? 1.0 : 0.3)
+                            }
                 }
             }
             .navigationTitle("ScrollView Animation")
+            .contentMargins(.top, 40, for: .scrollIndicators)
+            .scrollIndicatorsFlash(onAppear: true)
+            .contentMargins(.trailing, 10, for: .scrollContent)
         }
     }
 }
