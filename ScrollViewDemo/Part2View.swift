@@ -12,6 +12,8 @@
 import SwiftUI
 
 struct Part2View: View {
+    @State private var scrollID: Int?
+    
     var body: some View {
         NavigationStack {
             ScrollView { // This is only here because of the tabView
@@ -49,20 +51,37 @@ struct Part2View: View {
                     .contentMargins(.horizontal, 10, for: .scrollContent)
                     .scrollIndicators(.hidden)
                     .scrollTargetBehavior(.viewAligned)
+                    .scrollPosition(id: $scrollID)
                     // Button HStack
                     HStack {
                         Spacer()
                         Button("First") {
-
+                            withAnimation {
+                                if !ImageAsset.all.isEmpty {
+                                    scrollID = ImageAsset.all[0].id
+                                }
+                            }
                         }
-                        Text("Image name")
+//                        Text("Image name")
+                        if let scrollID {
+                            Text(ImageAsset.name(scrollID))
+                        }
                         Button("Last") {
-                           
+                            withAnimation {
+                                if !ImageAsset.all.isEmpty {
+                                    scrollID = ImageAsset.all[ImageAsset.all.count-1].id
+                                }
+                            }
                         }
                         Spacer()
                     }
                     .buttonStyle(.borderedProminent)
                     Spacer()
+                }
+                .onAppear {
+                    if !ImageAsset.all.isEmpty {
+                        scrollID = ImageAsset.all[0].id
+                    }
                 }
             }
             .navigationTitle("Part 2")
